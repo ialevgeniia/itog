@@ -1,4 +1,4 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
     private final String lastname;
@@ -6,10 +6,10 @@ public class ContactData {
     private final String firstnsme;
     private final String email;
 
-    public ContactData(String lastname, String mobile, String firstname, String email) {
+    public ContactData(String lastname, String mobile, String firstnsme, String email) {
         this.lastname = lastname;
         this.mobile = mobile;
-        this.firstnsme = firstname;
+        this.firstnsme = firstnsme;
         this.email = email;
     }
 
@@ -24,7 +24,9 @@ public class ContactData {
     public String getFirstnsme() {
         return firstnsme;
     }
+
     public String getEmail() {
         return email;
     }
+
 }
