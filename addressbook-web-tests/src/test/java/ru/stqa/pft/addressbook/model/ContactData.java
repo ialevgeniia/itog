@@ -29,4 +29,29 @@ public class ContactData {
         return email;
     }
 
+    @Override
+    public String toString() {
+        return "ContactData{" +
+                "lastname='" + lastname + '\'' +
+                ", firstnsme='" + firstnsme + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ContactData that = (ContactData) o;
+
+        if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
+        return firstnsme != null ? firstnsme.equals(that.firstnsme) : that.firstnsme == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = lastname != null ? lastname.hashCode() : 0;
+        result = 31 * result + (firstnsme != null ? firstnsme.hashCode() : 0);
+        return result;
+    }
 }
