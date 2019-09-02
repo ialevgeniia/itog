@@ -1,16 +1,31 @@
 package ru.stqa.pft.addressbook.model;
 
+import org.jetbrains.annotations.Contract;
+
 public class ContactData {
-    private final String lastname;
-    private final String mobile;
-    private final String firstnsme;
-    private final String email;
+    private int id;
+    private String lastname;
+    private String mobile;
+    private String firstnsme;
+    private String email;
+
+
 
     public ContactData(String lastname, String mobile, String firstnsme, String email) {
+        this.id = Integer.MAX_VALUE;
         this.lastname = lastname;
         this.mobile = mobile;
         this.firstnsme = firstnsme;
         this.email = email;
+    }
+
+    public ContactData(int id, String lastname, String mobile, String firstnsme, String email) {
+        this.id = id;
+        this.lastname = lastname;
+        this.mobile = mobile;
+        this.firstnsme = firstnsme;
+        this.email = email;
+
     }
 
     public String getLastname() {
@@ -27,6 +42,11 @@ public class ContactData {
 
     public String getEmail() {
         return email;
+    }
+
+
+    public int getId() {
+        return id;
     }
 
     @Override
