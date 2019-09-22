@@ -20,7 +20,7 @@ public class GroupModificationTests extends TestBase {
         List<GroupData> before = app.getGroupHelper().getGroupList();
         app.getGroupHelper().selectGroup(before.size()-1);
         app.getGroupHelper().initGroupModification();
-        GroupData group = new GroupData(before.get(before.size()-1).getId(), "Film", "Movie", "Movie_heroes");
+        GroupData group = new GroupData(before.get(before.size()-1).getId(), "Multiki", "Cartoon", "Cartoon_heroes");
         app.getGroupHelper().fillGroupForm(group);
         app.getGroupHelper().submitGroupModification();
         app.getGroupHelper().returnToGroupPage();

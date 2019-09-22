@@ -1,7 +1,5 @@
 package ru.stqa.pft.addressbook.model;
 
-import org.jetbrains.annotations.Contract;
-
 public class ContactData {
     private int id;
     private String lastname;
