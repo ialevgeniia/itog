@@ -3,18 +3,16 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.ToIntFunction;
 
 public class ContactCreationTest extends TestBase {
 
 
-  @Test
+  @Test//(enabled=false)
   public void testContactCreation() throws Exception {
-    app.getNavigationHelper().returnHomepage();
+    app.goTo().returnHomepage();
     List<ContactData> before = app.getContactHelper().getContactList();
     ContactData contact = new ContactData("Premudraia", "+8828282", "Vasilisa", "vasilisa@google.com");
     app.getContactHelper().createContact(contact);

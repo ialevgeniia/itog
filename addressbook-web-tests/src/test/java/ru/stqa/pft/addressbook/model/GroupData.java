@@ -1,11 +1,6 @@
 package ru.stqa.pft.addressbook.model;
 
 public class GroupData {
-    private int id;
-    private final String name;
-    private final String header;
-    private final String footer;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -13,39 +8,29 @@ public class GroupData {
 
         GroupData groupData = (GroupData) o;
 
+        if (id != groupData.id) return false;
         return name != null ? name.equals(groupData.name) : groupData.name == null;
     }
 
     @Override
     public int hashCode() {
-        return name != null ? name.hashCode() : 0;
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
     }
+
+    private int id=Integer.MAX_VALUE;
+    private String header;
+    private String footer;
+    private String name;
 
     public int getId() {
         return id;
     }
 
-
-    public GroupData(String name, String header, String footer) {
-        this.id = Integer.MAX_VALUE;
-        this.name = name;
-        this.header = header;
-        this.footer = footer;
-    }
-
-
-    public GroupData(int id, String name, String header, String footer) {
-        this.id = id;
-        this.name = name;
-        this.header = header;
-        this.footer = footer;
-    }
-
     public String getName() {
         return name;
     }
-
-
 
     public String getHeader() {
         return header;
@@ -63,7 +48,23 @@ public class GroupData {
                 '}';
     }
 
-    public void setId(int id) {
+    public GroupData withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public GroupData withHeader(String header) {
+        this.header = header;
+        return this;
+    }
+
+    public GroupData withFooter(String footer) {
+        this.footer = footer;
+        return this;
+    }
+
+    public GroupData withId(int id) {
         this.id = id;
+        return this;
     }
 }

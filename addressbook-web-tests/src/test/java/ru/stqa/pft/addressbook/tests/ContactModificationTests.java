@@ -9,10 +9,10 @@ import java.util.List;
 
 public class ContactModificationTests extends TestBase {
 
-    @Test
+    @Test//(enabled=false)
     public void testContactModification()
     {
-        app.getNavigationHelper().returnHomepage();
+        app.goTo().returnHomepage();
         if (!app.getContactHelper().isThereAContact()){
             app.getContactHelper().createContact (new ContactData("Seryi", "+7123443", "Volk", null));
             app.getContactHelper().returnToHomepage();
