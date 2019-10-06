@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,15 +32,17 @@ public class ContactHelper extends HelperBase {
 
 
     public void selectContact(int index) {
-        wd.findElements(By.name("selected[]")).get(index).click();
+        wd.findElements(By.cssSelector("selected[]")).get(index).click();
+    }
+
+    public void selectContactById(int id) {
+        //wd.findElements(By.cssSelector("input[value='" + id +"']")).click();
+        click(By.cssSelector("input[value='" + id +"']"));
     }
 
 
     public void deleteSelectedContact() {
         click(By.xpath("//input[@value='Delete']"));
-    }
-
-    public void agreeDeleteContact() {
         wd.switchTo().alert().accept();
     }
 
@@ -70,16 +73,15 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("home page"));
     }
 
-   public List<ContactData> getContactList() {
-       List<ContactData> contacts = new ArrayList<ContactData>();
+   public Contacts all() {
+       Contacts contacts = new Contacts();
        List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
        for (WebElement element: elements){
            List<WebElement> row = element.findElements(By.cssSelector("td"));
            String firstnsme = row.get(2).getText();
            String lastname = row.get(1).getText();
            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            ContactData contact = new ContactData(id, lastname, null, firstnsme, null);
-            contacts.add(contact);
+            contacts.add(new ContactData().withId(id).withLastname(lastname).withFirstnsme(firstnsme));
           }
          return contacts;
     }
