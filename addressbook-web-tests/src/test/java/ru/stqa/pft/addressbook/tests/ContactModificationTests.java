@@ -22,7 +22,7 @@ public class ContactModificationTests extends TestBase {
         }
     }
 
-     @Test//(enabled=false)
+     @Test(enabled=false)
      public void testContactModification () {
             Contacts before = app.getContactHelper().all();
             ContactData modifiedContact = before.iterator().next();

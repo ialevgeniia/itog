@@ -80,9 +80,25 @@ public class ContactHelper extends HelperBase {
            List<WebElement> row = element.findElements(By.cssSelector("td"));
            String firstnsme = row.get(2).getText();
            String lastname = row.get(1).getText();
+           String allPhones = row.get(5).getText();
            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            contacts.add(new ContactData().withId(id).withLastname(lastname).withFirstnsme(firstnsme));
+            contacts.add(new ContactData().withId(id).withLastname(lastname).withFirstnsme(firstnsme)
+                    .withAllPhones(allPhones));
           }
          return contacts;
+    }
+
+    public ContactData infoFromEditForm (ContactData contact){
+        editContact (contact.getId());
+        String firstnsme = wd.findElement(By.name("firstname")).getAttribute("value");
+        String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+        String home = wd.findElement(By.name("home")).getAttribute("value");
+        String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+        String work = wd.findElement(By.name("work")).getAttribute("value");
+        wd.navigate().back();
+        return new ContactData().withId(contact.getId()).withFirstnsme(firstnsme).withLastname(lastname)
+                .withHomePhone(home).withmobilePhone(mobile).withworkPhone(work);
+
+
     }
 }

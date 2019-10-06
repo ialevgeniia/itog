@@ -21,7 +21,7 @@ public class ContactDeletionTests extends TestBase {
         }
     }
 
-    @Test//(enabled=false)
+    @Test(enabled=false)
     public void testContactDeletion(){
     app.goTo().returnHomepage();
         Contacts before = app.getContactHelper().all();
