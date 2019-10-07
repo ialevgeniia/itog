@@ -30,7 +30,6 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("add new"));
     }
 
-
     public void selectContact(int index) {
         wd.findElements(By.cssSelector("selected[]")).get(index).click();
     }
@@ -40,12 +39,10 @@ public class ContactHelper extends HelperBase {
         click(By.cssSelector("input[value='" + id +"']"));
     }
 
-
     public void deleteSelectedContact() {
         click(By.xpath("//input[@value='Delete']"));
         wd.switchTo().alert().accept();
     }
-
 
     public void editContact(int id) {
         click(By.xpath("//a[@href='edit.php?id=" + id + "']"));
@@ -81,9 +78,11 @@ public class ContactHelper extends HelperBase {
            String firstnsme = row.get(2).getText();
            String lastname = row.get(1).getText();
            String allPhones = row.get(5).getText();
+           String allEmails = row.get(4).getText();
+           String address = row.get(3).getText();
            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             contacts.add(new ContactData().withId(id).withLastname(lastname).withFirstnsme(firstnsme)
-                    .withAllPhones(allPhones));
+                    .withAllPhones(allPhones).withAllEmails(allEmails).withAddress(address));
           }
          return contacts;
     }
@@ -95,10 +94,14 @@ public class ContactHelper extends HelperBase {
         String home = wd.findElement(By.name("home")).getAttribute("value");
         String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
         String work = wd.findElement(By.name("work")).getAttribute("value");
+        String email = wd.findElement(By.name("email")).getAttribute("value");
+        String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+        String email3 = wd.findElement(By.name("email3")).getAttribute("value");
+        String address = wd.findElement(By.name("address")).getAttribute("value");
         wd.navigate().back();
         return new ContactData().withId(contact.getId()).withFirstnsme(firstnsme).withLastname(lastname)
-                .withHomePhone(home).withmobilePhone(mobile).withworkPhone(work);
-
+                .withHomePhone(home).withMobile(mobile).withworkPhone(work)
+                .withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address);
 
     }
 }

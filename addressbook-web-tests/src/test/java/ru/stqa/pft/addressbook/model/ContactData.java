@@ -6,9 +6,13 @@ public class ContactData {
     private String mobile;
     private String firstnsme;
     private String email;
+    private String email2;
+    private String email3;
+    private String allEmails;
     private String homePhone;
-    private String mobilePhone;
     private String workPhone;
+    private String allPhones;
+    private String address;
 
     public String getAllPhones() {
         return allPhones;
@@ -19,7 +23,41 @@ public class ContactData {
         return this;
     }
 
-    private String allPhones;
+    public String getAllEmails() {
+        return allEmails;
+    }
+
+    public ContactData withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
+        return this;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public ContactData withAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public String getEmail2() {
+        return email2;
+    }
+
+    public ContactData withEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+
+    public String getEmail3() {
+        return email3;
+    }
+
+    public ContactData withEmail3(String email3) {
+        this.email3 = email3;
+        return this;
+    }
 
     public ContactData withId(int id) {
         this.id = id;
@@ -51,22 +89,17 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withmobilePhone(String mobilePhone) {
-        this.mobilePhone = mobilePhone;
-        return this;
-    }
-
     public ContactData withworkPhone(String workPhone) {
         this.workPhone = workPhone;
         return this;
     }
 
-    public String getHomePhone() {
-        return homePhone;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getMobilePhone() {
-        return mobilePhone;
+    public String getHomePhone() {
+        return homePhone;
     }
 
     public String getWorkPhone() {
@@ -87,6 +120,10 @@ public class ContactData {
 
     public String getEmail() {
         return email;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override
@@ -117,11 +154,4 @@ public class ContactData {
         return result;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 }
