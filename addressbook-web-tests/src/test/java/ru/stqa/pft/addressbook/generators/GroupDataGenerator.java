@@ -16,12 +16,9 @@ public class GroupDataGenerator<groups> {
     public static void main(String[] args) throws IOException {
         int count = Integer.parseInt(args[0]);
         File file = new File(args[1]);
-
         List<GroupData> groups = generateGroups(count);
         save(groups, file);
-
     }
-
 
     private static void save(List<GroupData> groups, File file) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
