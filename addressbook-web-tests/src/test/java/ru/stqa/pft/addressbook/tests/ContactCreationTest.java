@@ -37,11 +37,10 @@ public class ContactCreationTest extends TestBase {
 
   @Test (dataProvider = "validGroups")
   public void testContactCreation(ContactData contact) throws Exception {
+    Contacts before = app.db().contacts();
     app.goTo().returnHomepage();
-    Contacts before = app.getContactHelper().all();
     app.getContactHelper().createContact(contact);
-    app.getContactHelper().returnToHomepage();
-    Contacts after = app.getContactHelper().all();
+    Contacts after = app.db().contacts();
     assertEquals(after.size(), before.size()+1);
     assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }

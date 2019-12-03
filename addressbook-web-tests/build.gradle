@@ -11,6 +11,9 @@ dependencies {
     implementation 'com.beust:jcommander:1.48'
     implementation 'com.thoughtworks.xstream:xstream:1.4.8'
     implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'mysql:mysql-connector-java:8.0.18'
+    implementation 'org.hibernate:hibernate-core:5.4.9.Final'
+    
 }
 
 task testGroups (type:Test) {
@@ -26,7 +29,7 @@ task testGroups (type:Test) {
     }
 }
 
-task testGroups (type:Test) {
+task testContacts (type:Test) {
     useTestNG{
         suites 'src/test/resources/testng-contacts.xml'
     }
