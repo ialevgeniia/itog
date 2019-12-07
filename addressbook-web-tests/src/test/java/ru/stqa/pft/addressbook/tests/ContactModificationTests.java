@@ -17,7 +17,7 @@ public class ContactModificationTests extends TestBase {
     public void ensurePreconditions() {
         app.goTo().returnHomepage();
         if (app.db().contacts().size() == 0) {
-            app.getContactHelper().createContact(new ContactData().withFirstnsme("Seryi").withLastname("Volk"));
+            app.getContactHelper().createContact(new ContactData().withLastname("Ivan").withFirstnsme("Carevich").withMobile("77782").withEmail("car@car.car").withEmail2("").withEmail3("").withHomePhone("").withworkPhone("").withAddress(""));
             app.getContactHelper().returnToHomepage();
         }
     }

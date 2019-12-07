@@ -5,6 +5,8 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("group")
 @Entity
@@ -19,27 +21,8 @@ public class GroupData {
     @Type(type = "text")
     private String header;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        GroupData groupData = (GroupData) o;
-
-        if (id != groupData.id) return false;
-        if (header != null ? !header.equals(groupData.header) : groupData.header != null) return false;
-        if (footer != null ? !footer.equals(groupData.footer) : groupData.footer != null) return false;
-        return name != null ? name.equals(groupData.name) : groupData.name == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (header != null ? header.hashCode() : 0);
-        result = 31 * result + (footer != null ? footer.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
-    }
+    @ManyToMany(mappedBy = "groups")
+    private Set<ContactData> contacts = new HashSet<ContactData>();
 
     @Expose
     @Column(name = "group_footer")
@@ -88,9 +71,35 @@ public class GroupData {
         return this;
     }
 
+    public Contacts getContacts() {
+        return new Contacts(contacts);
+    }
+
     public GroupData withId(int id) {
         this.id = id;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GroupData groupData = (GroupData) o;
+
+        if (id != groupData.id) return false;
+        if (header != null ? !header.equals(groupData.header) : groupData.header != null) return false;
+        if (footer != null ? !footer.equals(groupData.footer) : groupData.footer != null) return false;
+        return name != null ? name.equals(groupData.name) : groupData.name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (header != null ? header.hashCode() : 0);
+        result = 31 * result + (footer != null ? footer.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
     }
 
 }

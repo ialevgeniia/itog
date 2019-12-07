@@ -5,6 +5,8 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="addressbook")
@@ -44,6 +46,14 @@ public class ContactData {
     private String allPhones;
     @Transient
     private String allEmails;
+
+    @ManyToMany
+    @JoinTable (name = "address_in_groups", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<GroupData> groups = new HashSet<GroupData>();
+
+    public Groups getGroups() {
+        return new Groups(groups);
+    }
 
     public String getAllPhones() {
         return allPhones;
@@ -198,6 +208,11 @@ public class ContactData {
 
     public int getId() {
         return id;
+    }
+
+    public ContactData inGroup(GroupData group){
+        groups.add(group);
+        return this;
     }
 
 }
