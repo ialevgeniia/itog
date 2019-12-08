@@ -71,7 +71,7 @@ public class GroupData {
         return this;
     }
 
-    public Contacts getContacts() {
+    public Set<ContactData> getContacts() {
         return new Contacts(contacts);
     }
 
