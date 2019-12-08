@@ -114,4 +114,9 @@ public class ContactHelper extends HelperBase {
             wd.findElement(By.xpath("//form//input[@name='add']")).click();
     }
 
+    public void ContactFromGroup(int contactId, GroupData group) {
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText(group.getName());
+        selectContactById(contactId);
+        click(By.xpath("//input[@name='remove']"));
+    }
 }

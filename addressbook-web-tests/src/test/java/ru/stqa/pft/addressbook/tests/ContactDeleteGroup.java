@@ -23,16 +23,28 @@ public class ContactDeleteGroup extends TestBase {
     @Test
     public void  testContactAddGroup () {
 
-        ContactData newcontact = new ContactData().withLastname("Prekrasnaia").withFirstnsme("Vasilisa").withMobile("77777").withEmail("").withEmail2("").withEmail3("").withHomePhone("").withworkPhone("").withAddress("");
+        ContactData newcontact = new ContactData().withLastname("Carevna").withFirstnsme("Liagushka").withMobile("").withEmail("").withEmail2("").withEmail3("").withHomePhone("").withworkPhone("").withAddress("");
         app.getContactHelper().createContact(newcontact);
         Contacts before = app.db().contacts();
         newcontact.withId(before.stream().mapToInt((g) -> (g).getId()).max().getAsInt());
         int idnew = newcontact.getId();
+        Groups groupsbefore = newcontact.getGroups();
         GroupData group = app.db().groups().iterator().next();
         app.goTo().returnHomepage();
         app.getContactHelper().ContactToGroup(idnew, group.getId());
+        app.goTo().returnHomepage();
+        app.getContactHelper().ContactFromGroup(idnew, group);
 
+        Contacts after = app.db().contacts();
+        ContactData contactafter = null;
 
+        for(ContactData i : after){
+            if (i.getId() == idnew){
+                contactafter = i;
+                break;
+            }
+        }
+        assert (groupsbefore.equals(contactafter.getGroups()));
 
     }
 
